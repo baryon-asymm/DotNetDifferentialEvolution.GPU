@@ -1,8 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F00376E-DD3B-4924-A17B-9A1B5DDFC9CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C0F3EAEB-60A9-4FAA-B368-913A974D901E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDifferentialEvolution.GPU", "src\DotNetDifferentialEvolution.GPU\DotNetDifferentialEvolution.GPU.csproj", "{4E803FB8-DA7B-49BC-A630-07F9B6D50540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDifferentialEvolution.GPU.Test", "tests\DotNetDifferentialEvolution.GPU.Test\DotNetDifferentialEvolution.GPU.Test.csproj", "{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E803FB8-DA7B-49BC-A630-07F9B6D50540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E803FB8-DA7B-49BC-A630-07F9B6D50540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E803FB8-DA7B-49BC-A630-07F9B6D50540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E803FB8-DA7B-49BC-A630-07F9B6D50540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E803FB8-DA7B-49BC-A630-07F9B6D50540} = {3F00376E-DD3B-4924-A17B-9A1B5DDFC9CA}
+		{FCEBDCE5-B144-4DE1-81B5-D2F219EE69B7} = {C0F3EAEB-60A9-4FAA-B368-913A974D901E}
 	EndGlobalSection
 EndGlobal
