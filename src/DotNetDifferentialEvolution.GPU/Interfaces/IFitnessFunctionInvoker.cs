@@ -4,5 +4,5 @@ namespace DotNetDifferentialEvolution.GPU.Interfaces;
 
 public interface IFitnessFunctionInvoker
 {
-    public void Invoke(int individualIndex, Population population);
+    public void Invoke(int individualIndex, DevicePopulation devicePopulation);
 }

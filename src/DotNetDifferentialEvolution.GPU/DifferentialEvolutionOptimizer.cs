@@ -1,45 +1,48 @@
-﻿using DotNetDifferentialEvolution.GPU.Interfaces;
+﻿using DotNetDifferentialEvolution.GPU.Controllers.Kernels.Interfaces;
+using DotNetDifferentialEvolution.GPU.Interfaces;
 using DotNetDifferentialEvolution.GPU.Models;
-using DotNetDifferentialEvolution.GPU.WorkerKernels.Interfaces;
 using ILGPU.Runtime;
 
 namespace DotNetDifferentialEvolution.GPU;
 
-public class DEOptimizer : IDEOptimizer<OptimizationResult>, IDisposable
+public class DifferentialEvolutionOptimizer : IDifferentialEvolutionOptimizer<OptimizationResult>, IDisposable
 {
-    private readonly IWorkerKernel _workerKernel;
+    private readonly IKernelController _kernelController;
     
-    public DEOptimizer(IWorkerKernel workerKernel)
+    public DifferentialEvolutionOptimizer(IKernelController kernelController)
     {
-        _workerKernel = workerKernel;
+        _kernelController = kernelController;
         
-        _workerKernel.CompileAndGPUMemoryAlloc();
+        _kernelController.CompileAndGpuMemoryAlloc();
     }
 
     public Task<OptimizationResult> RunAsync() => RunAsync(CancellationToken.None);
 
     public Task<OptimizationResult> RunAsync(CancellationToken cancellationToken)
     {
-        _workerKernel.Init();
+        _kernelController.Init();
         
-        _workerKernel.Run(cancellationToken);
+        _kernelController.Run(cancellationToken);
 
-        var bestIndividual = GetBestIndividual(_workerKernel);
+        var bestIndividual = GetBestIndividual(_kernelController);
         var result = new OptimizationResult(bestIndividual.FitnessFunctionValue, bestIndividual.Vector);
 
         return Task.FromResult(result);
     }
 
-    private static Individual GetBestIndividual(IWorkerKernel workerKernel)
+    private static Individual GetBestIndividual(IKernelController kernelController)
     {
-        var population = workerKernel.GetCurrentPopulation();
-        var hostFFValues = population.FitnessFunctionValues.GetAsArray();
+        var population = kernelController.GetCurrentPopulationOrNull();
+        if (population is null)
+            throw new InvalidOperationException("The current population is null.");
+        
+        var hostFfValues = population.FitnessFunctionValues.GetAsArray1D();
         var hostIndividuals = population.Individuals.GetAsArray2D();
 
-        var bestIndividualIndex = GetBestIndividualIndex(hostFFValues.AsSpan());
+        var bestIndividualIndex = GetBestIndividualIndex(hostFfValues.AsSpan());
         var bestIndividualVector = GetIndividualVector(bestIndividualIndex, hostIndividuals);
-        var bestIndividualFFValue = hostFFValues[bestIndividualIndex];
-        var bestIndividual = new Individual(bestIndividualFFValue, bestIndividualVector);
+        var bestIndividualFfValue = hostFfValues[bestIndividualIndex];
+        var bestIndividual = new Individual(bestIndividualFfValue, bestIndividualVector);
 
         return bestIndividual;
     }
@@ -70,7 +73,7 @@ public class DEOptimizer : IDEOptimizer<OptimizationResult>, IDisposable
 
     public void Dispose()
     {
-        _workerKernel.Dispose();
+        _kernelController.Dispose();
         
         GC.Collect();
     }

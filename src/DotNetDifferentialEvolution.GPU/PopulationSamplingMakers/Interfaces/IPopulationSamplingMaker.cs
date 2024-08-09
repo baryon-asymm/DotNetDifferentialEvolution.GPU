@@ -2,6 +2,6 @@
 
 public interface IPopulationSamplingMaker
 {
-    public double[,] TakeSamples();
     public int GetPopulationSize();
+    public double[,] TakeSamples();
 }

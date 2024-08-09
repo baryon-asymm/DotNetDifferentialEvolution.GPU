@@ -1,36 +1,33 @@
-﻿using DotNetDifferentialEvolution.GPU.Models;
+﻿using System.Runtime.CompilerServices;
+using DotNetDifferentialEvolution.GPU.Models;
 using DotNetDifferentialEvolution.GPU.SelectionStrategies.Interfaces;
 
 namespace DotNetDifferentialEvolution.GPU.SelectionStrategies;
 
 public readonly struct SelectionStrategy : ISelectionStrategy
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Select(
-        int individualIndex,
-        Population currentPopulation,
-        Population nextPopulation,
-        Population trialPopulation)
+        int index,
+        DevicePopulation currentPopulation,
+        DevicePopulation nextPopulation,
+        DevicePopulation trialPopulation)
     {
-        var vectorLength = nextPopulation.IndividualVectorLength;
+        var vectorSize = nextPopulation.VectorSize;
         
-        if (trialPopulation.FitnessFunctionValues[individualIndex]
-            < currentPopulation.FitnessFunctionValues[individualIndex])
+        if (trialPopulation.FitnessFunctionValues[index] < currentPopulation.FitnessFunctionValues[index])
         {
-            for (var i = 0; i < vectorLength; i++)
-                nextPopulation.Individuals[individualIndex, i] =
-                    trialPopulation.Individuals[individualIndex, i];
+            for (var i = 0; i < vectorSize; i++)
+                nextPopulation.Individuals[index, i] = trialPopulation.Individuals[index, i];
             
-            nextPopulation.FitnessFunctionValues[individualIndex] =
-                trialPopulation.FitnessFunctionValues[individualIndex];
+            nextPopulation.FitnessFunctionValues[index] = trialPopulation.FitnessFunctionValues[index];
         }
         else
         {
-            for (var i = 0; i < vectorLength; i++)
-                nextPopulation.Individuals[individualIndex, i] =
-                    currentPopulation.Individuals[individualIndex, i];
+            for (var i = 0; i < vectorSize; i++)
+                nextPopulation.Individuals[index, i] = currentPopulation.Individuals[index, i];
             
-            nextPopulation.FitnessFunctionValues[individualIndex] =
-                currentPopulation.FitnessFunctionValues[individualIndex];
+            nextPopulation.FitnessFunctionValues[index] = currentPopulation.FitnessFunctionValues[index];
         }
     }
 }

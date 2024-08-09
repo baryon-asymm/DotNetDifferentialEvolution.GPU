@@ -2,7 +2,14 @@
 
 namespace DotNetDifferentialEvolution.GPU.Models;
 
-public record OptimizationResult(double FitnessFunctionValue, IEnumerable<double> individualVector)
+public class OptimizationResult
 {
-    public ReadOnlyCollection<double> IndividualVector { get; } = individualVector.ToArray().AsReadOnly();
+    public double FitnessFunctionValue { get; }
+    public ReadOnlyCollection<double> Individual { get; }
+
+    public OptimizationResult(double fitnessFunctionValue, IEnumerable<double> individual)
+    {
+        FitnessFunctionValue = fitnessFunctionValue;
+        Individual = individual.ToArray().AsReadOnly();
+    }
 }

@@ -1,15 +1,14 @@
 ﻿using DotNetDifferentialEvolution.GPU.Models;
+using DotNetDifferentialEvolution.GPU.RandomGenerators.Interfaces;
 
 namespace DotNetDifferentialEvolution.GPU.MutationStrategies.Interfaces;
 
-public interface IMutationStrategy
+public interface IMutationStrategy<in TRandomGenerator>
+    where TRandomGenerator : struct, IRandomGenerator
 {
     public void Mutate(
-        int indexOfCurrentIndividual,
-        Population currentPopulation,
-        Population trialPopulation,
-        int pageOfRandom,
-        DeviceRandom random);
-
-    public int GetMaxRandomNumbersPerIndividual(int individualVectorSize);
+        int index,
+        DevicePopulation currentPopulation,
+        DevicePopulation trialPopulation,
+        TRandomGenerator random);
 }

@@ -1,6 +1,6 @@
 ﻿namespace DotNetDifferentialEvolution.GPU.Interfaces;
 
-public interface IDEOptimizer<T>
+public interface IDifferentialEvolutionOptimizer<T>
 {
     public Task<T> RunAsync();
     

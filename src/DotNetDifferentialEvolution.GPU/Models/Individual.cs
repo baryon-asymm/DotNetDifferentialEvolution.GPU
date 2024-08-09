@@ -2,9 +2,16 @@
 
 namespace DotNetDifferentialEvolution.GPU.Models;
 
-public record Individual(
-    double FitnessFunctionValue,
-    IEnumerable<double> vector)
+public class Individual
 {
-    public ReadOnlyCollection<double> Vector { get; } = vector.ToArray().AsReadOnly();
+    public double FitnessFunctionValue { get; }
+    public ReadOnlyCollection<double> Vector { get; }
+
+    public Individual(
+        double fitnessFunctionValue,
+        IEnumerable<double> vector)
+    {
+        FitnessFunctionValue = fitnessFunctionValue;
+        Vector = vector.ToArray().AsReadOnly();
+    }
 }

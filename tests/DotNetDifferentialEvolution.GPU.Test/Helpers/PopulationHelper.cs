@@ -5,7 +5,7 @@ namespace DotNetDifferentialEvolution.GPU.Test.Helpers;
 
 public static class PopulationHelper
 {
-    public static Population GetRandomPopulation(
+    public static DevicePopulation GetRandomPopulation(
         Accelerator device,
         int populationSize,
         int individualVectorSize,
@@ -29,12 +29,12 @@ public static class PopulationHelper
 
         var deviceIndividuals = device.Allocate2DDenseX(individuals);
         var deviceFitnessFunctionValues = device.Allocate1D(fitnessFunctionValues);
-        var population = new Population(deviceFitnessFunctionValues.View, deviceIndividuals.View);
+        var population = new DevicePopulation(deviceFitnessFunctionValues.View, deviceIndividuals.View);
 
         return population;
     }
 
-    public static Population GetPopulation(
+    public static DevicePopulation GetPopulation(
         Accelerator device,
         int populationSize,
         int individualVectorSize,
@@ -56,7 +56,7 @@ public static class PopulationHelper
 
         var deviceIndividuals = device.Allocate2DDenseX(individuals);
         var deviceFitnessFunctionValues = device.Allocate1D(fitnessFunctionValues);
-        var population = new Population(deviceFitnessFunctionValues.View, deviceIndividuals.View);
+        var population = new DevicePopulation(deviceFitnessFunctionValues.View, deviceIndividuals.View);
 
         return population;
     }

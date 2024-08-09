@@ -10,7 +10,7 @@ public enum OptimizerState : byte
     Terminating
 }
 
-public interface IOptimizerUpdateHandler
+public interface IUpdateOptimizerHandler
 {
-    public void Handle(OptimizerState state, Accelerator device, int generation, Population population);
+    public void Handle(OptimizerState state, Accelerator device, int generation, HostPopulation population);
 }

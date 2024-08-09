@@ -5,8 +5,8 @@ namespace DotNetDifferentialEvolution.GPU.SelectionStrategies.Interfaces;
 public interface ISelectionStrategy
 {
     public void Select(
-        int individualIndex,
-        Population currentPopulation,
-        Population nextPopulation,
-        Population trialPopulation);
+        int index,
+        DevicePopulation currentPopulation,
+        DevicePopulation nextPopulation,
+        DevicePopulation trialPopulation);
 }

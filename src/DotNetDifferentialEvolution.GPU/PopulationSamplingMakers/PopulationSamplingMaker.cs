@@ -11,6 +11,8 @@ public class PopulationSamplingMaker : IPopulationSamplingMaker
     private readonly ReadOnlyCollection<double> _upperBound;
     private readonly ReadOnlyCollection<double> _lowerBound;
 
+    public int GetPopulationSize() => _populationSize;
+
     public PopulationSamplingMaker(
         int populationSize,
         IEnumerable<double> upperBound,
@@ -29,20 +31,18 @@ public class PopulationSamplingMaker : IPopulationSamplingMaker
     
     public double[,] TakeSamples()
     {
-        var individualVectorSize = _upperBound.Count;
-        var hostIndividualsBuffer = new double[_populationSize, individualVectorSize];
+        var vectorSize = _upperBound.Count;
+        var individualsBuffer = new double[_populationSize, vectorSize];
         
         const int startIndex = 0;
         Parallel.For(startIndex, _populationSize, i =>
         {
-            for (var j = 0; j < individualVectorSize; j++)
+            for (var j = 0; j < vectorSize; j++)
             {
-                hostIndividualsBuffer[i, j] = _lowerBound[j] + _random.NextDouble() * (_upperBound[j] - _lowerBound[j]);
+                individualsBuffer[i, j] = _lowerBound[j] + _random.NextDouble() * (_upperBound[j] - _lowerBound[j]);
             }
         });
 
-        return hostIndividualsBuffer;
+        return individualsBuffer;
     }
-
-    public int GetPopulationSize() => _populationSize;
 }
