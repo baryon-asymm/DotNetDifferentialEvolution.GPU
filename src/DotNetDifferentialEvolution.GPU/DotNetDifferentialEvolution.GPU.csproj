@@ -4,6 +4,21 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DotNetDifferentialEvolution.GPU</RootNamespace>
+        <AssemblyName>DotNetDifferentialEvolution.GPU</AssemblyName>
+        <PackageId>DotNetDifferentialEvolution.GPU</PackageId>
+        <Version>0.0.2</Version>
+        <Authors>Eduard Burachek</Authors>
+        <Description>A .NET library for Differential Evolution optimization with GPU acceleration using ILGPU.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/baryon-asymm/DotNetDifferentialEvolution.GPU</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/baryon-asymm/DotNetDifferentialEvolution.GPU</RepositoryUrl>
+        <Tags>differential-evolution, optimization, gpu, ilgpu, .net</Tags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>DotNetDifferentialEvolution.GPU</Title>
+        <Copyright>Copyright (c) Eduard Burachek, 2024</Copyright>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>differential-evolution optimization gpu ilgpu .net</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,6 +28,12 @@
 
     <ItemGroup>
       <Folder Include="Builders\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE" Pack="true" PackagePath="\" />
+        <None Include="../../ILGPU_LICENSE" Pack="true" PackagePath="\" />
+        <None Include="../../README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
 </Project>

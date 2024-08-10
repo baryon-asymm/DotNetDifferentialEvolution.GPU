@@ -15,7 +15,7 @@ This library implements the Differential Evolution algorithm with GPU accelerati
 ## Installation
 
 To use this library, you need:
-- .NET SDK version 6.0 or higher.
+- .NET SDK version 8.0 or higher.
 - ILGPU package for GPU computation.
 
 You can install the library via NuGet:
