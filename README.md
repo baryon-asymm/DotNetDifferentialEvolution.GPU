@@ -1,5 +1,13 @@
 # DotNetDifferentialEvolution.GPU
 
+> **This repository has moved.** Development of `DotNetDifferentialEvolution.GPU` continues in
+> [baryon-asymm/DotNetDifferentialEvolution](https://github.com/baryon-asymm/DotNetDifferentialEvolution),
+> under `src/DotNetDifferentialEvolution.GPU`, with its full history. The NuGet package keeps
+> its ID; new versions are published from there. This repository is archived and read-only.
+> Please open issues and pull requests in the new repository.
+>
+> The text below describes the versions published from here (0.1.0, 0.0.2, 0.2.0).
+
 ## Introduction
 
 Differential Evolution (DE) is a stochastic optimization algorithm used for finding global minima or maxima of functions in multi-dimensional spaces. It was introduced by Kenneth Price and Rainer Storn in 1997. DE is known for its simplicity and effectiveness, especially for complex optimization problems. For more details on the algorithm, you can refer to the [Wikipedia page](https://en.wikipedia.org/wiki/Differential_evolution).
